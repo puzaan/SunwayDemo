@@ -25,6 +25,9 @@ public class FoodCategory {
     @Column(name = "food_category_name")
     private String foodCategoryName;
 
+    @Column(name = "is_active")
+    private Boolean isActive;
+
     @JsonIgnore
     @OneToMany(mappedBy = "foodCategory")
     private Set<Food> foods = new HashSet<>();
