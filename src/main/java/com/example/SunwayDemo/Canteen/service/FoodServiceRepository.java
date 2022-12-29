@@ -1,6 +1,6 @@
 package com.example.SunwayDemo.Canteen.service;
 
-import com.example.SunwayDemo.Canteen.common.FoodDto;
+import com.example.SunwayDemo.Canteen.dto.foodDto.FoodDto;
 import com.example.SunwayDemo.Canteen.entity.Food;
 
 import java.util.List;

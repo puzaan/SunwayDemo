@@ -1,7 +1,6 @@
 package com.example.SunwayDemo.Canteen.controller;
 
-import com.example.SunwayDemo.Canteen.common.FoodDto;
-import com.example.SunwayDemo.Canteen.entity.Food;
+import com.example.SunwayDemo.Canteen.dto.foodDto.FoodDto;
 import com.example.SunwayDemo.Canteen.service.FoodService;
 import com.example.SunwayDemo.Canteen.util.RestApi;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +14,11 @@ import javax.validation.Valid;
 @RequestMapping(path = RestApi.FoodSection.FOOD_URL)
 public class FoodController {
     @Autowired
-    private FoodService foodService;
+    private final FoodService foodService;
+
+    public FoodController(FoodService foodService) {
+        this.foodService = foodService;
+    }
 
     @PostMapping(path = "/create")
     public ResponseEntity<?> CreateFoods(@Valid @RequestBody FoodDto foodDto) {

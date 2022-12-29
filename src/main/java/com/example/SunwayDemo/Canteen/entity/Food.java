@@ -1,6 +1,6 @@
 package com.example.SunwayDemo.Canteen.entity;
 
-import com.example.SunwayDemo.Canteen.common.FoodType;
+import com.example.SunwayDemo.Canteen.enums.FoodType;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.DynamicInsert;
@@ -8,8 +8,6 @@ import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 import java.util.Date;
 
@@ -32,7 +30,6 @@ public class Food {
     private Integer id;
 
 
-    @Size(min = 2, message = "Product name should have at least 2 characters")
     @Column(name = "food_name")
     private String foodName;
 
@@ -49,16 +46,20 @@ public class Food {
     @Column(name = "food_type")
     private FoodType foodType;
 
+
+
+    @ManyToOne()
+    //name can be anything but ref name should be @Colum name or id
+    @JoinColumn(name = "food_category_id",
+            foreignKey = @ForeignKey(name = "FK_FOOD_FOOD_CATEGORY_ID"),
+            referencedColumnName = "id")
+    private FoodCategory foodCategory;
+
     @CreationTimestamp
     @Column(name= "created_on")
     private Date createdOn;
     @UpdateTimestamp
     @Column(name = "updated_on")
     private Date updatedOn;
-
-    @ManyToOne()
-    //name can be anything but ref name should be @Colum name or id
-    @JoinColumn(name = "food_category_id", referencedColumnName = "id")
-    private FoodCategory foodCategory;
 
 }

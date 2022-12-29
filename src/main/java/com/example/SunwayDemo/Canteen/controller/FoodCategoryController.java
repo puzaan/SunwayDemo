@@ -12,7 +12,11 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(path = RestApi.FoodSection.FOOD_CATEGORY)
 public class FoodCategoryController {
     @Autowired
-    private FoodCategoryService foodCategoryService;
+    private final FoodCategoryService foodCategoryService;
+
+    public FoodCategoryController(FoodCategoryService foodCategoryService) {
+        this.foodCategoryService = foodCategoryService;
+    }
 
 
     @PostMapping(path = "/create")

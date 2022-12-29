@@ -14,7 +14,7 @@ import java.util.Set;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "food_category")
+@Table(name = "food_category", uniqueConstraints = {@UniqueConstraint(name = "UNIQUE_CAT_NAME", columnNames = {"name", "shortName"})})
 public class FoodCategory {
 
     @Id
@@ -25,11 +25,19 @@ public class FoodCategory {
     @Column(name = "food_category_name")
     private String foodCategoryName;
 
+    @Column(name = "short_name")
+    private String shortName;
+
     @Column(name = "is_active")
     private Boolean isActive;
+
+
 
     @JsonIgnore
     @OneToMany(mappedBy = "foodCategory")
     private Set<Food> foods = new HashSet<>();
 
+    public FoodCategory(Integer id) {
+        this.id = id;
+    }
 }

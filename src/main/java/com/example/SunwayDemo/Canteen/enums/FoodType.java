@@ -1,4 +1,4 @@
-package com.example.SunwayDemo.Canteen.common;
+package com.example.SunwayDemo.Canteen.enums;
 
 public enum FoodType {
     VEG,

@@ -1,5 +1,6 @@
-package com.example.SunwayDemo.Canteen.common;
+package com.example.SunwayDemo.Canteen.dto.foodDto;
 
+import com.example.SunwayDemo.Canteen.enums.FoodType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
