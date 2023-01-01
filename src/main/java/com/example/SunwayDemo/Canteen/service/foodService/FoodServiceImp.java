@@ -10,6 +10,9 @@ import com.example.SunwayDemo.Canteen.reopsitory.FoodCategoryRepository;
 import com.example.SunwayDemo.Canteen.reopsitory.FoodRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,9 +30,8 @@ public class FoodServiceImp implements FoodService {
         Optional<FoodCategory> foodCategory = foodCategoryRepository.findById(foodDto.getFoodCategoryId());
 
         if(foodCategory.isPresent()){
-            Food food = FoodMapper.foodDtoToFood(foodDto);
+            Food food = FoodMapper.foodDtoToFoodList(foodDto);
             Food food1 = foodRepository.save(food);
-            System.out.println(food1);
             return FoodMapper.foodToFoodDto(food1);
         }else {
             throw new FoodCategoryNotFoundException(foodDto.getFoodCategoryId());
@@ -43,9 +45,16 @@ public class FoodServiceImp implements FoodService {
         if (foods.isEmpty()) {
             throw new FoodNotFoundException("No Food found");
         } else {
-            return FoodMapper.foodsToFoodDto(foods);
+            return FoodMapper.foodsToFoodDtoList(foods);
         }
     }
+
+//    @Override
+//    public Page<Food> getLimitFood(Integer page , Integer size) {
+//        Pageable pageable = PageRequest.of(page, size);
+//        Page<Food> foods = foodRepository.findAll(pageable);
+//        return foods;
+//    }
 
     @Override
     public FoodDto getFoodById(Integer id) {

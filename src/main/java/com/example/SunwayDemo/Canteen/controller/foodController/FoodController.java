@@ -1,11 +1,13 @@
 package com.example.SunwayDemo.Canteen.controller.foodController;
 
 import com.example.SunwayDemo.Canteen.dto.foodDto.FoodDto;
+import com.example.SunwayDemo.Canteen.entity.foodEntity.Food;
 import com.example.SunwayDemo.Canteen.service.foodService.FoodServiceImp;
 import com.example.SunwayDemo.Canteen.util.RestApi;
 import com.example.SunwayDemo.abstracts.BaseController;
 import com.example.SunwayDemo.golbal.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -34,6 +36,12 @@ public class FoodController extends BaseController {
         ApiResponse<List<FoodDto>> foodItemsDtoApiResponse = new ApiResponse<>("successfully fetched food item's", true, foodServiceImp.getAllFood());
         return new  ResponseEntity<>(foodItemsDtoApiResponse, HttpStatus.OK);
     }
+
+//    @GetMapping(path = "/list")
+//    public ResponseEntity<?> getLimitFood(@RequestParam(defaultValue = "1", name = "page") Integer page, @RequestParam(defaultValue = "5", name = "size") Integer size){
+//        ApiResponse<Page<Food>> foodItemsDtoApiResponse = new ApiResponse<>("successfully fetched food item's", true, foodServiceImp.getLimitFood(page, size));
+//        return new  ResponseEntity<>(foodItemsDtoApiResponse, HttpStatus.OK);
+//    }
 
     @GetMapping(path = "/{id}")
     public ResponseEntity<?> getFoodById(@PathVariable Integer id){

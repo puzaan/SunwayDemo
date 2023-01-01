@@ -5,6 +5,7 @@ import com.example.SunwayDemo.Canteen.entity.foodCategoryEntity.FoodCategory;
 import com.example.SunwayDemo.Canteen.exception.foodexception.foodCategoryException.FoodCategoryNotFoundException;
 import com.example.SunwayDemo.Canteen.mapper.FoodCategoryMapper;
 import com.example.SunwayDemo.Canteen.reopsitory.FoodCategoryRepository;
+import com.example.SunwayDemo.resources.FoodCategoryResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +21,8 @@ public class FoodCategoryServiceImp implements FoodCategoryService {
     public FoodCategoryDto CreateFoodCategory(FoodCategoryDto foodCategoryDto) {
         FoodCategory foodCategory = FoodCategoryMapper.foodCategoryDtoToFoodCategory(foodCategoryDto);
         foodCategoryRepository.save(foodCategory);
-        return FoodCategoryMapper.foodCategoryToFoodCategoryDto(foodCategory);
+        FoodCategoryDto foodCategoryDto1 = FoodCategoryMapper.foodCategoryToFoodCategoryDto(foodCategory);
+        return new FoodCategoryResource().createLinksWithFoodCategory(foodCategoryDto1);
     }
 
     @Override
@@ -37,7 +39,8 @@ public class FoodCategoryServiceImp implements FoodCategoryService {
     public FoodCategoryDto getFoodCategoryById(Integer id) {
         Optional<FoodCategory> foodCategory = foodCategoryRepository.findById(id);
         if(foodCategory.isPresent()){
-            return FoodCategoryMapper.foodCategoryToFoodCategoryDto(foodCategory.get());
+            FoodCategoryDto foodCategoryDto = FoodCategoryMapper.foodCategoryToFoodCategoryDto(foodCategory.get());
+            return new FoodCategoryResource().createLinksWithFoodCategory(foodCategoryDto);
         }else {
             throw new FoodCategoryNotFoundException(id);
         }
@@ -58,9 +61,9 @@ public class FoodCategoryServiceImp implements FoodCategoryService {
         Optional<FoodCategory> foodCategoryDto1 = foodCategoryRepository.findById(id);
         if(foodCategoryDto1.isPresent()){
             foodCategoryDto.setId(id);
-
             FoodCategory foodCategory = foodCategoryRepository.save(FoodCategoryMapper.foodCategoryDtoToFoodCategory(foodCategoryDto));
-            return FoodCategoryMapper.foodCategoryToFoodCategoryDto(foodCategory);
+            FoodCategoryDto foodCategoryDto2 = FoodCategoryMapper.foodCategoryToFoodCategoryDto(foodCategory);
+            return new FoodCategoryResource().createLinksWithFoodCategory(foodCategoryDto2);
         }else{
          throw new FoodCategoryNotFoundException(id);
         }

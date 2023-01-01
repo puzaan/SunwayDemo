@@ -27,7 +27,7 @@ public class FoodMapper {
 
     }
 
-    public static Food foodDtoToFood(FoodDto foodDto){
+    public static Food foodDtoToFoodList(FoodDto foodDto){
         Food food = new Food();
         food.setId(foodDto.getId());
         food.setFoodName(foodDto.getFoodName());
@@ -39,7 +39,7 @@ public class FoodMapper {
 
     }
 
-    public static List<FoodDto> foodsToFoodDto(List<Food> foods){
+    public static List<FoodDto> foodsToFoodDtoList(List<Food> foods){
         List<FoodDto> foodDto = new ArrayList<>();
         for(Food food: foods){
             foodDto.add(foodToFoodDto(food));
@@ -47,10 +47,10 @@ public class FoodMapper {
         return foodDto;
     }
 
-    public static List<Food> foodDtoToFood(List<FoodDto> foodDtos){
+    public static List<Food> foodDtoToFoodList(List<FoodDto> foodDtos){
         List<Food> food = new ArrayList<>();
         for (FoodDto foodDto: foodDtos){
-            food.add(foodDtoToFood(foodDto));
+            food.add(foodDtoToFoodList(foodDto));
         }
         return food;
     }

@@ -2,6 +2,7 @@ package com.example.SunwayDemo.Canteen.mapper;
 
 import com.example.SunwayDemo.Canteen.dto.foodCategoryDto.FoodCategoryDto;
 import com.example.SunwayDemo.Canteen.entity.foodCategoryEntity.FoodCategory;
+import com.example.SunwayDemo.resources.FoodCategoryResource;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +36,7 @@ public class FoodCategoryMapper {
     public static List<FoodCategoryDto> foodCategoryToFoodCategoryDtoList(List<FoodCategory> foodCategories){
         List<FoodCategoryDto> foodCategoryDtos = new ArrayList<>();
         for(FoodCategory foodCategory: foodCategories){
-            foodCategoryDtos.add(foodCategoryToFoodCategoryDto(foodCategory));
+            foodCategoryDtos.add(new FoodCategoryResource().createLinksWithFoodCategory(foodCategoryToFoodCategoryDto(foodCategory)));
         }
         return foodCategoryDtos;
     }

@@ -5,11 +5,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
+import org.springframework.hateoas.Links;
+import org.springframework.hateoas.RepresentationModel;
 
 import static javax.persistence.GenerationType.*;
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.io.Serializable;
+
 
 @Entity
 @Getter
@@ -20,7 +22,7 @@ import java.util.Set;
 @DynamicUpdate
 @DynamicInsert
 @Table(name = "food_category", uniqueConstraints = {@UniqueConstraint(name = "UNIQUE_Food_CAT_NAME", columnNames = {"food_category_name", "short_name"})})
-public class FoodCategory {
+public class FoodCategory{
 
     @Id
     @GeneratedValue(strategy = AUTO)
@@ -47,4 +49,6 @@ public class FoodCategory {
     public FoodCategory(Integer id) {
         this.id = id;
     }
+
+
 }
