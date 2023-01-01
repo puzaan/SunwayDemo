@@ -1,4 +1,4 @@
-package com.example.SunwayDemo.Canteen.exception.foodexception;
+package com.example.SunwayDemo.Canteen.exception.foodexception.foodCategoryException;
 
 public class FoodCategoryNotFoundException extends RuntimeException{
     public FoodCategoryNotFoundException(String message) {

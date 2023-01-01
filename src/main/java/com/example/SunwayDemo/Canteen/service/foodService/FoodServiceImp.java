@@ -1,10 +1,11 @@
-package com.example.SunwayDemo.Canteen.service;
+package com.example.SunwayDemo.Canteen.service.foodService;
 
 import com.example.SunwayDemo.Canteen.dto.foodDto.FoodDto;
-import com.example.SunwayDemo.Canteen.entity.Food;
-import com.example.SunwayDemo.Canteen.entity.FoodCategory;
-import com.example.SunwayDemo.Canteen.exception.foodexception.FoodCategoryNotFoundException;
-import com.example.SunwayDemo.Canteen.exception.foodexception.FoodNotFoundException;
+import com.example.SunwayDemo.Canteen.entity.foodEntity.Food;
+import com.example.SunwayDemo.Canteen.entity.foodCategoryEntity.FoodCategory;
+import com.example.SunwayDemo.Canteen.exception.foodexception.foodCategoryException.FoodCategoryNotFoundException;
+import com.example.SunwayDemo.Canteen.exception.foodexception.foodException.FoodNotFoundException;
+import com.example.SunwayDemo.Canteen.mapper.FoodMapper;
 import com.example.SunwayDemo.Canteen.reopsitory.FoodCategoryRepository;
 import com.example.SunwayDemo.Canteen.reopsitory.FoodRepository;
 import org.springframework.beans.BeanUtils;
@@ -15,40 +16,42 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class FoodService implements FoodServiceRepository{
+public class FoodServiceImp implements FoodService {
     @Autowired
     private FoodRepository foodRepository;
     @Autowired
     private FoodCategoryRepository foodCategoryRepository;
 
     @Override
-    public Food CreateFood(FoodDto foodDto) {
+    public FoodDto CreateFood(FoodDto foodDto) {
         Optional<FoodCategory> foodCategory = foodCategoryRepository.findById(foodDto.getFoodCategoryId());
-        Food food = new Food();
+
         if(foodCategory.isPresent()){
-            BeanUtils.copyProperties(foodDto, food);
-            food.setFoodCategory(foodCategory.get());
-            return foodRepository.save(food);
+            Food food = FoodMapper.foodDtoToFood(foodDto);
+            Food food1 = foodRepository.save(food);
+            System.out.println(food1);
+            return FoodMapper.foodToFoodDto(food1);
         }else {
             throw new FoodCategoryNotFoundException(foodDto.getFoodCategoryId());
         }
     }
 
     @Override
-    public List<Food> getAllFood() {
+    public List<FoodDto> getAllFood() {
         List<Food> foods = foodRepository.findAll();
+
         if (foods.isEmpty()) {
             throw new FoodNotFoundException("No Food found");
         } else {
-            return foods;
+            return FoodMapper.foodsToFoodDto(foods);
         }
     }
 
     @Override
-    public Food getFoodById(Integer id) {
+    public FoodDto getFoodById(Integer id) {
         Optional<Food> food = foodRepository.findById(id);
         if (food.isPresent()) {
-            return food.get();
+            return FoodMapper.foodToFoodDto(food.get());
         } else {
             throw new FoodNotFoundException(id);
         }

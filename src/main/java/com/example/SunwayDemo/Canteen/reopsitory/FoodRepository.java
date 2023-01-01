@@ -1,6 +1,6 @@
 package com.example.SunwayDemo.Canteen.reopsitory;
 
-import com.example.SunwayDemo.Canteen.entity.Food;
+import com.example.SunwayDemo.Canteen.entity.foodEntity.Food;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

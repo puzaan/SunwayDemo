@@ -1,7 +1,10 @@
-package com.example.SunwayDemo.Canteen.entity;
+package com.example.SunwayDemo.Canteen.entity.foodCategoryEntity;
 
+import com.example.SunwayDemo.Canteen.entity.foodEntity.Food;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import static javax.persistence.GenerationType.*;
 import javax.persistence.*;
@@ -14,7 +17,9 @@ import java.util.Set;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "food_category", uniqueConstraints = {@UniqueConstraint(name = "UNIQUE_CAT_NAME", columnNames = {"name", "shortName"})})
+@DynamicUpdate
+@DynamicInsert
+@Table(name = "food_category", uniqueConstraints = {@UniqueConstraint(name = "UNIQUE_Food_CAT_NAME", columnNames = {"food_category_name", "short_name"})})
 public class FoodCategory {
 
     @Id
@@ -31,11 +36,13 @@ public class FoodCategory {
     @Column(name = "is_active")
     private Boolean isActive;
 
+    @Column(columnDefinition = "TEXT",name="description")
+    private String description;
 
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "foodCategory")
-    private Set<Food> foods = new HashSet<>();
+//    @JsonIgnore
+//    @OneToMany(mappedBy = "foodCategory")
+//    private Set<Food> foods = new HashSet<>();
 
     public FoodCategory(Integer id) {
         this.id = id;

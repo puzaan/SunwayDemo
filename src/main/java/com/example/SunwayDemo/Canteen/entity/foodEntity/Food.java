@@ -1,5 +1,6 @@
-package com.example.SunwayDemo.Canteen.entity;
+package com.example.SunwayDemo.Canteen.entity.foodEntity;
 
+import com.example.SunwayDemo.Canteen.entity.foodCategoryEntity.FoodCategory;
 import com.example.SunwayDemo.Canteen.enums.FoodType;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -49,9 +50,8 @@ public class Food {
 
 
     @ManyToOne()
-    //name can be anything but ref name should be @Colum name or id
     @JoinColumn(name = "food_category_id",
-            foreignKey = @ForeignKey(name = "FK_FOOD_FOOD_CATEGORY_ID"),
+            foreignKey = @ForeignKey(name = "FK_FOOD_FOOD_CATEGORY"),
             referencedColumnName = "id")
     private FoodCategory foodCategory;
 
