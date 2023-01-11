@@ -8,4 +8,14 @@ public class RestApi {
         public static final String FOOD_CATEGORY = FOOD_URL + "/category";
 
     }
+    public static class UserSection{
+        public static final String FACULTY_URL = RestApi.BASE_URL + "/faculty";
+        public static final String STUDENT_URL = RestApi.BASE_URL + "/student";
+
+    }
+    public static class FacultySection{
+        public static final String FACULTY_URL = RestApi.BASE_URL + "/faculty";
+        public static final String SUBJECT_URL = RestApi.BASE_URL + "/subject";
+
+    }
 }

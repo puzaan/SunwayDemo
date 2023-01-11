@@ -47,8 +47,6 @@ public class Food {
     @Column(name = "food_type")
     private FoodType foodType;
 
-
-
     @ManyToOne()
     @JoinColumn(name = "food_category_id",
             foreignKey = @ForeignKey(name = "FK_FOOD_FOOD_CATEGORY"),

@@ -1,4 +1,4 @@
-package com.example.SunwayDemo.resources;
+package com.example.SunwayDemo.Canteen.resources;
 
 import com.example.SunwayDemo.Canteen.controller.foodCategoryController.FoodCategoryController;
 import com.example.SunwayDemo.Canteen.dto.foodCategoryDto.FoodCategoryDto;

@@ -2,10 +2,10 @@ package com.example.SunwayDemo.Canteen.service.foodCetogaryService;
 
 import com.example.SunwayDemo.Canteen.dto.foodCategoryDto.FoodCategoryDto;
 import com.example.SunwayDemo.Canteen.entity.foodCategoryEntity.FoodCategory;
-import com.example.SunwayDemo.Canteen.exception.foodexception.foodCategoryException.FoodCategoryNotFoundException;
+import com.example.SunwayDemo.Canteen.exceptions.foodCategoryException.FoodCategoryNotFoundException;
 import com.example.SunwayDemo.Canteen.mapper.FoodCategoryMapper;
-import com.example.SunwayDemo.Canteen.reopsitory.FoodCategoryRepository;
-import com.example.SunwayDemo.resources.FoodCategoryResource;
+import com.example.SunwayDemo.Canteen.repository.FoodCategoryRepository;
+import com.example.SunwayDemo.Canteen.resources.FoodCategoryResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

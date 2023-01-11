@@ -2,7 +2,7 @@ package com.example.SunwayDemo.Canteen.mapper;
 
 import com.example.SunwayDemo.Canteen.dto.foodCategoryDto.FoodCategoryDto;
 import com.example.SunwayDemo.Canteen.entity.foodCategoryEntity.FoodCategory;
-import com.example.SunwayDemo.resources.FoodCategoryResource;
+import com.example.SunwayDemo.Canteen.resources.FoodCategoryResource;
 
 import java.util.ArrayList;
 import java.util.List;
