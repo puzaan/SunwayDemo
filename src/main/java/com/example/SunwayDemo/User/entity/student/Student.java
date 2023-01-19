@@ -4,8 +4,7 @@ import com.example.SunwayDemo.User.entity.faculty.Faculty;
 import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.Pattern;
+
 
 @Entity
 @Getter
@@ -27,11 +26,6 @@ public class Student {
     private Integer id;
 
     private String name;
-
-
-    @Email(regexp = "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}",
-            flags = Pattern.Flag.CASE_INSENSITIVE)
-    private String email;
 
     private String phoneNo;
     private String rollNum;

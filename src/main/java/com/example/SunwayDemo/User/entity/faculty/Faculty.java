@@ -15,7 +15,6 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 @Builder
 @Table(name = "faculty")
 public class Faculty extends RepresentationModel<Faculty> implements Serializable {
@@ -29,15 +28,17 @@ public class Faculty extends RepresentationModel<Faculty> implements Serializabl
     @Column(columnDefinition = "TEXT")
     private String details;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.MERGE, orphanRemoval = true)
     @JoinColumn(name = "faculty_id", foreignKey = @ForeignKey(name = "FK_FACULTY_SUBJECTS"))
     private List<Subjects> subjectsList;
+
+
+    public void setResource(Links resource) {
+        this.add(resource);
+    }
 
     public Faculty(Integer id) {
         this.id = id;
     }
 
-    public void setResource(Links resource) {
-        this.add(resource);
-    }
 }

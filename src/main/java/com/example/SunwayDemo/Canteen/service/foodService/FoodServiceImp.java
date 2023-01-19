@@ -29,7 +29,7 @@ public class FoodServiceImp implements FoodService {
         Optional<FoodCategory> foodCategory = foodCategoryRepository.findById(foodDto.getFoodCategoryId());
 
         if(foodCategory.isPresent()){
-            Food food = FoodMapper.foodDtoToFoodList(foodDto);
+            Food food = FoodMapper.foodDtoToFood(foodDto);
             Food food1 = foodRepository.save(food);
             return FoodMapper.foodToFoodDto(food1);
         }else {
@@ -134,6 +134,21 @@ return null;
 //                        cat.getFoodCategoryName())
 //        );
         return foodItemsCategorized;
+    }
+
+    @Override
+    public List<Food> findByIds(List<Integer> ids) {
+        return foodRepository.findAllById(ids);
+    }
+
+    @Override
+    public Food FoodById(Integer id) {
+        Optional<Food> food = foodRepository.findById(id);
+        if (food.isPresent()) {
+            return food.get();
+        } else {
+            throw new FoodNotFoundException(id);
+        }
     }
 
 }

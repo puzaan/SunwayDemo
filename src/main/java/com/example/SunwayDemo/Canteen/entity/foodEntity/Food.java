@@ -60,4 +60,7 @@ public class Food {
     @Column(name = "updated_on")
     private Date updatedOn;
 
+    public Food(Integer id) {
+        this.id = id;
+    }
 }

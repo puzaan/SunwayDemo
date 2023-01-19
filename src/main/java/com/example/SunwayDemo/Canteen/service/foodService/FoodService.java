@@ -23,4 +23,8 @@ public interface FoodService {
 
      Map<String, List<FoodDto>> getActiveFoodCategory();
 
+     List<Food> findByIds(List<Integer> ids);
+
+     Food FoodById (Integer id);
+
 }

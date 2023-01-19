@@ -1,8 +1,5 @@
 package com.example.SunwayDemo.User.mapper;
 
-import com.example.SunwayDemo.Canteen.dto.foodDto.FoodDto;
-import com.example.SunwayDemo.Canteen.entity.foodCategoryEntity.FoodCategory;
-import com.example.SunwayDemo.Canteen.entity.foodEntity.Food;
 import com.example.SunwayDemo.User.dto.StudentDTO;
 import com.example.SunwayDemo.User.entity.faculty.Faculty;
 import com.example.SunwayDemo.User.entity.student.Student;
@@ -15,7 +12,6 @@ public class StudentMapper {
         StudentDTO studentDTO = new StudentDTO();
         studentDTO.setId(student.getId());
         studentDTO.setName(student.getName());
-        studentDTO.setEmail(student.getEmail());
         studentDTO.setBatch(student.getBatch());
         studentDTO.setRollNum(student.getRollNum());
         studentDTO.setPhoneNo(student.getPhoneNo());
@@ -24,12 +20,11 @@ public class StudentMapper {
         return studentDTO;
     }
 
-    public static Student foodDtoToFoodList(StudentDTO studentDTO){
+    public static Student studentDtoToStudent(StudentDTO studentDTO){
 
         Student student = new Student();
         student.setName(studentDTO.getName());
         student.setBatch(studentDTO.getBatch());
-        student.setEmail(studentDTO.getEmail());
         student.setRollNum(studentDTO.getRollNum());
         student.setPhoneNo(studentDTO.getPhoneNo());
         student.setFaculty(new Faculty(studentDTO.getFacultyId()));
@@ -48,7 +43,7 @@ public class StudentMapper {
     public static List<Student> studentDtoToStudentList(List<StudentDTO> studentDTOS){
         List<Student> students = new ArrayList<>();
         for (StudentDTO studentDTO: studentDTOS){
-            students.add(foodDtoToFoodList(studentDTO));
+            students.add(studentDtoToStudent(studentDTO));
         }
         return students;
     }

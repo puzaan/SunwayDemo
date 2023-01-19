@@ -29,7 +29,6 @@ public class StudentServiceImp implements StudentService {
         Student student = Student.builder()
                 .name(studentDTO.getName())
                 .rollNum(studentDTO.getRollNum())
-                .email(studentDTO.getEmail())
                 .faculty(new Faculty(studentDTO.getFacultyId()))
                 .phoneNo(studentDTO.getPhoneNo())
                 .batch(studentDTO.getBatch())
@@ -66,6 +65,16 @@ public class StudentServiceImp implements StudentService {
         if(studentRepo.findById(id).isPresent()){
             studentRepo.deleteById(id);
             return "successfully deleted student";
+        }else {
+            throw new StudentNotFoundException(id);
+        }
+    }
+
+    @Override
+    public Student getStudentById(Integer id) {
+        Optional<Student> student = studentRepo.findById(id);
+        if(student.isPresent()){
+            return student.get();
         }else {
             throw new StudentNotFoundException(id);
         }
