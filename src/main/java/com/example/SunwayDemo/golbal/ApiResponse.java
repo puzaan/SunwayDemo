@@ -20,5 +20,8 @@ public class ApiResponse <T> {
         this.success = success;
     }
 
-
+    public ApiResponse(boolean success, T data) {
+        this.success = success;
+        this.data = data;
+    }
 }

@@ -20,4 +20,13 @@ public class RestApi {
         public static final String SUBJECT_URL = RestApi.BASE_URL + "/subject";
 
     }
+
+    public static class RollSection{
+        public static final String Roll_URL = RestApi.BASE_URL + "/roll";
+
+    }
+    public static class StaffSection{
+        public static final String Staff_URL = RestApi.BASE_URL + "/staff";
+
+    }
 }

@@ -7,4 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Repository
 public interface StaffRepo extends JpaRepository<Staff, Integer> {
+
+    Staff findByName(String name);
 }
