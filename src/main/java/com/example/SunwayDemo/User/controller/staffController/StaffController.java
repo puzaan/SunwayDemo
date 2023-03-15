@@ -3,13 +3,13 @@ package com.example.SunwayDemo.User.controller.staffController;
 
 import com.example.SunwayDemo.Canteen.util.RestApi;
 import com.example.SunwayDemo.User.dto.StaffDto;
-import com.example.SunwayDemo.User.entity.roll.Roll;
 import com.example.SunwayDemo.User.entity.staff.Staff;
 import com.example.SunwayDemo.User.service.staff.StaffService;
 import com.example.SunwayDemo.abstracts.BaseController;
 import com.example.SunwayDemo.golbal.ApiResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,6 +32,7 @@ public class StaffController extends BaseController {
     }
 
     @GetMapping(path = "/list")
+    @PreAuthorize("hasRole('admin')")
     public ResponseEntity<?> getAll(){
         ApiResponse<List<Staff>> staff = new ApiResponse<>( messageSource.get("get.all", messageSource.get("roll")), true,staffService.getAll() );
         return new ResponseEntity<>(staff, HttpStatus.OK);}

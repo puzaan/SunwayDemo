@@ -39,30 +39,28 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.cors();
-        http.csrf().disable()
-                .authorizeRequests()
-                        .antMatchers("/authenticate","/api/v1/staff/create").permitAll()
-                        .antMatchers(HttpHeaders.ALLOW).permitAll()
-                        .anyRequest().authenticated()
+    protected void configure(HttpSecurity httpSecurity) throws Exception {
+        httpSecurity.cors();
+        httpSecurity.csrf().disable()
+                .authorizeRequests().antMatchers("/authenticate", "/registerNewUser","/sendMail","/sendMailWithAttachment").permitAll()
+                .antMatchers(HttpHeaders.ALLOW).permitAll()
+                .anyRequest().authenticated()
                 .and()
-                        .exceptionHandling().authenticationEntryPoint(jwtAuthEntryPoint)
-                        .and()
-                                .sessionManagement()
-                                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-//        super.configure(http);
-        http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+                .exceptionHandling().authenticationEntryPoint(jwtAuthEntryPoint)
+                .and()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+        ;
+
+        httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
     @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder authenticationManagerBuilder)throws Exception{
-
+    public void configureGlobal(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
         authenticationManagerBuilder.userDetailsService(jwtService).passwordEncoder(passwordEncoder());
     }
 }

@@ -44,7 +44,6 @@ public class StaffServiceImp implements StaffService{
         staff1.setRolls(rollDtoToRoll(staffDto.getRollDtos()));
         staffRepo.save(staff1);
         staffDto.setId(staff1.getId());
-        System.out.println(staffDto);
         return staffDto;
     }
 
