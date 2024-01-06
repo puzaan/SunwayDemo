@@ -2,9 +2,12 @@ package com.example.SunwayDemo.User.controller.emailController;
 
 import com.example.SunwayDemo.User.entity.emailDetail.EmailDetail;
 import com.example.SunwayDemo.User.service.email.EmailService;
+import com.itextpdf.text.DocumentException;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.io.IOException;
 
 @RestController
 public class EmailController {
@@ -18,8 +21,7 @@ public class EmailController {
 
     // Sending a simple Email
     @PostMapping("/sendMail")
-    public String sendMail(@RequestBody EmailDetail details)
-    {
+    public String sendMail(@RequestBody EmailDetail details) throws DocumentException, IOException {
         if(details.getAttachment() !=null && !details.getAttachment().isEmpty()){
             String status = emailService.sendMailWithAttachment(details);
             return status;
